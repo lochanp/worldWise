@@ -12,10 +12,15 @@ import { useUrlPostion } from '../hooks/useUrlPosition';
 function Map() {
   const { cities } = useCitiesContext();
   const [mapPosition, setMapPosition] = useState([40, 0]);
+  // const [citiess, setCities] = useState();
   const { isLoading: isLoadingPosition, position: geolocationPosition, getPosition } = useGeolocation();
 
   const [mapLat, mapLng] = useUrlPostion();
-  console.log(cities);
+  console.log(cities.cities);
+
+  // useEffect(() => {
+  // setCities(cities);
+  // }, [cities]);
 
   useEffect(
     function () {
@@ -44,7 +49,7 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
         />
-        {cities?.map(city => (
+        {cities.cities.map(city => (
           <Marker position={[city.position.lat, city.position.lng]} key={city.id}>
             <Popup>
               <span>{city.emoji}</span> <span>{city.cityName}</span>

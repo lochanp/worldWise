@@ -14,7 +14,7 @@ const CityList = () => {
       ) : !context.isLoading && context.cities?.length <= 0 ? (
         <Message message='Add your first city by clicking on a city on the map' />
       ) : (
-        context.cities?.map((city, i) => <CityItem city={city} key={i} />)
+        context.cities?.cities.map((city, i) => <CityItem city={city} key={i} />)
       )}
     </ul>
   );
