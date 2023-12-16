@@ -10,7 +10,7 @@ import CityList from './components/CityList';
 import CountryList from './components/CountryList';
 import City from './components/City';
 import Form from './components/Form';
-import { CitiesProvider } from './context/citiesContext';
+import { CitiesProvider } from './context/CitiesContext';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './pages/ProtectedRoute';
 import { Suspense, lazy } from 'react';
