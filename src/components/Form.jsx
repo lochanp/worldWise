@@ -10,8 +10,7 @@ import Message from './Message';
 import Spinner from './Spinner';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useCitiesContext } from '../context/citiesContext';
-
+import { useCitiesContext } from '../context/CitiesContext';
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
     .toUpperCase()
