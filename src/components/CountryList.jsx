@@ -8,7 +8,7 @@ const CountryList = () => {
   const context = useCitiesContext();
   const countries = context.isLoading
     ? []
-    : context.cities?.reduce((arr, city) => {
+    : context.cities.cities?.reduce((arr, city) => {
         if (!arr.map(el => el.country).includes(city.country)) {
           return [...arr, { country: city.country, emoji: city.emoji }];
         } else return arr;
@@ -18,7 +18,7 @@ const CountryList = () => {
     <ul className={styles.countryList}>
       {context.isLoading ? (
         <Spinner />
-      ) : !context.isLoading && context.cities?.length <= 0 ? (
+      ) : !context.isLoading && context.cities.cities?.length <= 0 ? (
         <Message message='Add your first city by clicking on a city on the map' />
       ) : (
         countries.map((country, i) => <CountryItem country={country} key={i} />)
