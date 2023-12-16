@@ -1,7 +1,7 @@
 import { createContext, useEffect, useContext, useReducer, useCallback } from 'react';
 
 const CitesContext = createContext();
-
+const BASE_URL = 'https://raw.githubusercontent.com/lochanp/worldWise/main/data/cities.json';
 const initalState = {
   cities: [],
   isLoading: false,
@@ -64,7 +64,7 @@ function CitiesProvider({ children }) {
     const fetchCities = async () => {
       dispatch({ type: 'loading' });
       try {
-        const res = await fetch(`http://localhost:8000/cities#`);
+        const res = await fetch(BASE_URL);
         const data = await res.json();
         dispatch({ type: 'cities/loaded', payload: data });
       } catch {
@@ -78,7 +78,7 @@ function CitiesProvider({ children }) {
     async id => {
       dispatch({ type: 'loading' });
       try {
-        const res = await fetch(`http://localhost:8000/cities/${id}`);
+        const res = await fetch(`${BASE_URL}/${id}`);
         const data = await res.json();
         dispatch({ type: 'city/loaded', payload: data });
       } catch {
@@ -90,7 +90,7 @@ function CitiesProvider({ children }) {
   const createCity = async newCity => {
     dispatch({ type: 'loading' });
     try {
-      const res = await fetch(`http://localhost:8000/cities`, {
+      const res = await fetch(BASE_URL, {
         method: 'POST',
         body: JSON.stringify(newCity),
         headers: {
@@ -107,7 +107,7 @@ function CitiesProvider({ children }) {
   const deleteCity = async id => {
     dispatch({ type: 'loading' });
     try {
-      await fetch(`http://localhost:8000/cities/${id}`, {
+      await fetch(`${BASE_URL}/${id}`, {
         method: 'DELETE'
       });
       dispatch({ type: 'city/deleted', payload: id });
